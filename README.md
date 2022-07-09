@@ -9,3 +9,18 @@
 > - Disponibilizamos as ferramentas na infraestrutura.
 
 ##
+
+> # Scripts disponíveis
+>
+> No diretório do projeto, você pode rodar:
+>
+> - #### `yarn`
+>   Para instalar as dependências do projeto.
+>
+> - #### `yarn dev`
+>   Para rodar o projeto em modo de desenvolvimento.
+>
+> - #### `yarn build`
+>   Para compilar os arquivos par JS.
+
+##
