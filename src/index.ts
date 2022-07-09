@@ -2,7 +2,7 @@ import express, { json } from 'express';
 import cors from 'cors';
 
 const app = express();
-const port = 3030;
+const port = process.env.PORT;
 
 app.use(json());
 app.use(cors());
