@@ -1,12 +1,17 @@
 import { db } from '..';
 import { DataTypes, Model } from 'sequelize';
+import { DoctorModel } from './DoctorModel';
 
 export type specialtyType = {
   id?: number;
   name: string;
 };
 
-export const SpecialtyModel = class Specialty extends Model<specialtyType> {};
+export const SpecialtyModel = class Specialty extends Model<specialtyType> {
+  static associate() {
+    SpecialtyModel.hasMany(DoctorModel);
+  }
+};
 
 SpecialtyModel.init(
   {
