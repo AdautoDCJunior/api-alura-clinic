@@ -2,7 +2,7 @@ import { db } from '..';
 import { DataTypes, Model } from 'sequelize';
 
 export type specialtyType = {
-  id: number;
+  id?: number;
   name: string;
 };
 
