@@ -1,0 +1,11 @@
+{
+  "name": "api-alura-clinic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AdautoDCJunior/api-alura-clinic",
+  "author": "Adauto Júnior <adautodcjunior@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
