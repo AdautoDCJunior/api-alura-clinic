@@ -29,7 +29,7 @@
   "paths": {
     "/specialty": {
       "get": {
-        "summary": "Recupera todas as especialidades",
+        "summary": "Obtem todas as especialidades",
         "responses": {
           "200": {
             "$ref": "#/components/responses/specialtys"
@@ -41,7 +41,7 @@
         "tags": ["Especialidade"]
       },
       "post": {
-        "summary": "Cria nova especialidade",
+        "summary": "Cria uma nova especialidade",
         "requestBody": {
           "$ref": "#/components/requestBodies/specialty"
         },
@@ -57,9 +57,9 @@
       }
     },
     "/specialty/{id}": {
-      "parameters": [{ "$ref": "#/components/parameters/specialtyID" }],
+      "parameters": [{ "$ref": "#/components/parameters/id" }],
       "get": {
-        "summary": "Recupera uma especialidade por ID",
+        "summary": "Obtem uma especialidade por ID",
         "responses": {
           "200": {
             "$ref": "#/components/responses/specialty"
@@ -106,11 +106,91 @@
         },
         "tags": ["Especialidade"]
       }
+    },
+    "/doctor": {
+      "get": {
+        "summary": "Obtem todos os doutores",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/doctors"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
+      },
+      "post": {
+        "summary": "Cria um novo doutor",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/doctor"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/doctor"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
+      }
+    },
+    "/doctor/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/id" }],
+      "get": {
+        "summary": "Obtem um doutor por ID",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/doctor"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
+      },
+      "put": {
+        "summary": "Atualiza um doutor por ID",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/doctor"
+        },
+        "responses": {
+          "204": {
+            "description": "Sucesso"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
+      },
+      "delete": {
+        "summary": "Deleta um doutor por ID",
+        "responses": {
+          "204": {
+            "description": "Sucesso"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
+      }
     }
   },
   "components": {
     "parameters": {
-      "specialtyID": {
+      "id": {
         "name": "id",
         "in": "path",
         "schema": {
@@ -125,6 +205,15 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/specialtyWithoutID"
+            }
+          }
+        }
+      },
+      "doctor": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/doctorWithoutID"
             }
           }
         }
@@ -164,6 +253,56 @@
           }
         }
       },
+      "doctorType": {
+        "title": "doutor",
+        "description": "Objeto de doutor",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID de identificação única dos doutores",
+            "type": "integer"
+          },
+          "specialty_id": {
+            "title": "ID de identificação única das especialidades",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Nome do doutor",
+            "type": "string"
+          },
+          "crm": {
+            "title": "CRM do doutor",
+            "type": "integer"
+          }
+        }
+      },
+      "doctorArrayType": {
+        "title": "doutores [ ]",
+        "description": "Array de doutores",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/doctorType"
+        }
+      },
+      "doctorWithoutID": {
+        "title": "doutor sem id",
+        "description": "Objeto de doutor sem ID",
+        "type": "object",
+        "properties": {
+          "specialty_id": {
+            "title": "ID de identificação única das especialidades",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Nome do doutor",
+            "type": "string"
+          },
+          "crm": {
+            "title": "CRM do doutor",
+            "type": "integer"
+          }
+        }
+      },
       "error": {
         "title": "Erro",
         "description": "Objeto de erro",
@@ -191,6 +330,26 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/specialtyArrayType"
+            }
+          }
+        }
+      },
+      "doctor": {
+        "description": "Sucesso",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/doctorType"
+            }
+          }
+        }
+      },
+      "doctors": {
+        "description": "Sucesso",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/doctorArrayType"
             }
           }
         }
