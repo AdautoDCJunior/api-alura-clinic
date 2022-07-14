@@ -120,6 +120,23 @@
         },
         "tags": ["Doutor"]
       }
+    },
+    "/doctor/{id}": {
+      "get": {
+        "summary": "Obtem um doutor por ID",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/doctor"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
+      }
     }
   },
   "components": {
@@ -179,7 +196,7 @@
         }
       },
       "doctorType": {
-        "title": "doctor",
+        "title": "doutor",
         "description": "Objeto de doutor",
         "type": "object",
         "properties": {
@@ -236,6 +253,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/specialtyArrayType"
+            }
+          }
+        }
+      },
+      "doctor": {
+        "description": "Sucesso",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/doctorType"
             }
           }
         }
