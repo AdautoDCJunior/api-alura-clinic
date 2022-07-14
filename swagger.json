@@ -41,7 +41,7 @@
         "tags": ["Especialidade"]
       },
       "post": {
-        "summary": "Cria nova especialidade",
+        "summary": "Cria uma nova especialidade",
         "requestBody": {
           "$ref": "#/components/requestBodies/specialty"
         },
@@ -119,6 +119,21 @@
           }
         },
         "tags": ["Doutor"]
+      },
+      "post": {
+        "summary": "Cria um novo doutor",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/doctor"
+        },
+        "responses": {
+          "201": {
+            "$ref": "#/components/responses/doctor"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
       }
     },
     "/doctor/{id}": {
@@ -156,6 +171,15 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/specialtyWithoutID"
+            }
+          }
+        }
+      },
+      "doctor": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/doctorWithoutID"
             }
           }
         }
@@ -224,6 +248,25 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/doctorType"
+        }
+      },
+      "doctorWithoutID": {
+        "title": "doutor sem id",
+        "description": "Objeto de doutor sem ID",
+        "type": "object",
+        "properties": {
+          "specialty_id": {
+            "title": "ID de identificação única das especialidades",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Nome do doutor",
+            "type": "string"
+          },
+          "crm": {
+            "title": "CRM do doutor",
+            "type": "integer"
+          }
         }
       },
       "error": {
