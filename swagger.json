@@ -170,6 +170,21 @@
           }
         },
         "tags": ["Doutor"]
+      },
+      "delete": {
+        "summary": "Deleta um doutor por ID",
+        "responses": {
+          "204": {
+            "description": "Sucesso"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
       }
     }
   },
