@@ -25,6 +25,7 @@
       "url": "http://localhost:3000/api/"
     }
   ],
+  "security": [{ "auth": [] }],
   "paths": {
     "/specialty": {
       "get": {
