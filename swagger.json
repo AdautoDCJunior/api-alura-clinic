@@ -18,5 +18,155 @@
   "externalDocs": {
     "description": "Documentação burocrática",
     "url": "https://github.com/AdautoDCJunior/api-alura-clinic"
+  },
+  "servers": [
+    {
+      "description": "API de testes",
+      "url": "http://localhost:3000/api/"
+    }
+  ],
+  "paths": {
+    "/specialty": {
+      "get": {
+        "summary": "Recupera todas as especialidades",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Array de especialidades",
+                  "type": "array",
+                  "items": {
+                    "description": "Objeto de especialidade",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "title": "ID de identificação única das especialidades",
+                        "type": "integer"
+                      },
+                      "name": {
+                        "title": "Nome da especialidade",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria nova especialidade",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Objeto de especialidade sem ID",
+                "properties": {
+                  "name": {
+                    "title": "Nome da especialidade",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Objeto de especialidade",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "title": "ID de identificação única das especialidades",
+                      "type": "integer"
+                    },
+                    "name": {
+                      "title": "Nome da especialidade",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specialty/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "integer"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Recupera uma especialidade por ID",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Objeto de especialidade",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "title": "ID de identificação única das especialidades",
+                      "type": "integer"
+                    },
+                    "name": {
+                      "title": "Nome da especialidade",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza uma especialidade por id",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "Objeto de especialidade sem ID",
+                "properties": {
+                  "name": {
+                    "title": "Nome da especialidade",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Sucesso"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta uma especialidade por id",
+        "responses": {
+          "204": {
+            "description": "Sucesso"
+          }
+        }
+      }
+    }
   }
 }
