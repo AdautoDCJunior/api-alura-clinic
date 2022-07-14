@@ -1,1 +1,22 @@
-{}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API de consultório",
+    "description": "API para controlar médicos e suas especialidades dentro do consultório",
+    "version": "1.0.0",
+    "termsOfService": "https://github.com/AdautoDCJunior/api-alura-clinic",
+    "contact": {
+      "name": "Suporte a Devs",
+      "email": "dev.adautojunior@gmail.com",
+      "url": "https://github.com/AdautoDCJunior/api-alura-clinic"
+    },
+    "license": {
+      "name": "GPLv3",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.pt-br.html"
+    }
+  },
+  "externalDocs": {
+    "description": "Documentação burocrática",
+    "url": "https://github.com/AdautoDCJunior/api-alura-clinic"
+  }
+}
