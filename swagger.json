@@ -29,7 +29,7 @@
   "paths": {
     "/specialty": {
       "get": {
-        "summary": "Recupera todas as especialidades",
+        "summary": "Obtem todas as especialidades",
         "responses": {
           "200": {
             "$ref": "#/components/responses/specialtys"
@@ -59,7 +59,7 @@
     "/specialty/{id}": {
       "parameters": [{ "$ref": "#/components/parameters/specialtyID" }],
       "get": {
-        "summary": "Recupera uma especialidade por ID",
+        "summary": "Obtem uma especialidade por ID",
         "responses": {
           "200": {
             "$ref": "#/components/responses/specialty"
@@ -105,6 +105,20 @@
           }
         },
         "tags": ["Especialidade"]
+      }
+    },
+    "/doctor": {
+      "get": {
+        "summary": "Obtem todos os doutores",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/doctors"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
       }
     }
   },
@@ -164,6 +178,37 @@
           }
         }
       },
+      "doctorType": {
+        "title": "doctor",
+        "description": "Objeto de doutor",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID de identificação única dos doutores",
+            "type": "integer"
+          },
+          "specialty_id": {
+            "title": "ID de identificação única das especialidades",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Nome do doutor",
+            "type": "string"
+          },
+          "crm": {
+            "title": "CRM do doutor",
+            "type": "integer"
+          }
+        }
+      },
+      "doctorArrayType": {
+        "title": "doutores [ ]",
+        "description": "Array de doutores",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/doctorType"
+        }
+      },
       "error": {
         "title": "Erro",
         "description": "Objeto de erro",
@@ -191,6 +236,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/specialtyArrayType"
+            }
+          }
+        }
+      },
+      "doctors": {
+        "description": "Sucesso",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/doctorArrayType"
             }
           }
         }
