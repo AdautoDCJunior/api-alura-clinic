@@ -57,7 +57,7 @@
       }
     },
     "/specialty/{id}": {
-      "parameters": [{ "$ref": "#/components/parameters/specialtyID" }],
+      "parameters": [{ "$ref": "#/components/parameters/id" }],
       "get": {
         "summary": "Obtem uma especialidade por ID",
         "responses": {
@@ -137,6 +137,7 @@
       }
     },
     "/doctor/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/id" }],
       "get": {
         "summary": "Obtem um doutor por ID",
         "responses": {
@@ -151,12 +152,30 @@
           }
         },
         "tags": ["Doutor"]
+      },
+      "put": {
+        "summary": "Atualiza um doutor por ID",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/doctor"
+        },
+        "responses": {
+          "204": {
+            "description": "Sucesso"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Doutor"]
       }
     }
   },
   "components": {
     "parameters": {
-      "specialtyID": {
+      "id": {
         "name": "id",
         "in": "path",
         "schema": {
