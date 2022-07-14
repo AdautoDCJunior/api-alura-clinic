@@ -31,141 +31,187 @@
         "summary": "Recupera todas as especialidades",
         "responses": {
           "200": {
-            "description": "Sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "Array de especialidades",
-                  "type": "array",
-                  "items": {
-                    "description": "Objeto de especialidade",
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "title": "ID de identificação única das especialidades",
-                        "type": "integer"
-                      },
-                      "name": {
-                        "title": "Nome da especialidade",
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/specialtys"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
           }
-        }
+        },
+        "tags": ["Especialidade"]
       },
       "post": {
         "summary": "Cria nova especialidade",
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "Objeto de especialidade sem ID",
-                "properties": {
-                  "name": {
-                    "title": "Nome da especialidade",
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/specialty"
         },
         "responses": {
           "201": {
-            "description": "Sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "Objeto de especialidade",
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "title": "ID de identificação única das especialidades",
-                      "type": "integer"
-                    },
-                    "name": {
-                      "title": "Nome da especialidade",
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/specialty"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
           }
-        }
+        },
+        "tags": ["Especialidade"]
       }
     },
     "/specialty/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "schema": {
-            "type": "integer"
-          },
-          "required": true
-        }
-      ],
+      "parameters": [{ "$ref": "#/components/parameters/specialtyID" }],
       "get": {
         "summary": "Recupera uma especialidade por ID",
         "responses": {
           "200": {
-            "description": "Sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "description": "Objeto de especialidade",
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "title": "ID de identificação única das especialidades",
-                      "type": "integer"
-                    },
-                    "name": {
-                      "title": "Nome da especialidade",
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/specialty"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
           }
-        }
+        },
+        "tags": ["Especialidade"]
       },
       "put": {
         "summary": "Atualiza uma especialidade por id",
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "Objeto de especialidade sem ID",
-                "properties": {
-                  "name": {
-                    "title": "Nome da especialidade",
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/specialty"
         },
         "responses": {
           "204": {
             "description": "Sucesso"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
           }
-        }
+        },
+        "tags": ["Especialidade"]
       },
       "delete": {
         "summary": "Deleta uma especialidade por id",
         "responses": {
           "204": {
             "description": "Sucesso"
+          },
+          "400": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "tags": ["Especialidade"]
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "specialtyID": {
+        "name": "id",
+        "in": "path",
+        "schema": {
+          "type": "integer"
+        },
+        "required": true
+      }
+    },
+    "requestBodies": {
+      "specialty": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/specialtyWithoutID"
+            }
           }
         }
+      }
+    },
+    "schemas": {
+      "specialtyType": {
+        "title": "especialidade",
+        "description": "Objeto de especialidade",
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "ID de identificação única das especialidades",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Nome da especialidade",
+            "type": "string"
+          }
+        }
+      },
+      "specialtyArrayType": {
+        "title": "especialidades [ ]",
+        "description": "Array de especialidades",
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/specialtyType"
+        }
+      },
+      "specialtyWithoutID": {
+        "title": "especialidade sem id",
+        "description": "Objeto de especialidade sem ID",
+        "properties": {
+          "name": {
+            "title": "Nome da especialidade",
+            "type": "string"
+          }
+        }
+      },
+      "error": {
+        "title": "Erro",
+        "description": "Objeto de erro",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "responses": {
+      "specialty": {
+        "description": "Sucesso",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/specialtyType"
+            }
+          }
+        }
+      },
+      "specialtys": {
+        "description": "Sucesso",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/specialtyArrayType"
+            }
+          }
+        }
+      },
+      "notFound": {
+        "description": "Especialidade não encontrada",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/error"
+            }
+          }
+        }
+      },
+      "error": {
+        "description": "Erro interno desconhecido"
+      }
+    },
+    "securitySchemes": {
+      "auth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }
